@@ -12,7 +12,6 @@ function ShowWord({toGuessChars, guessedChars}) {
             </thead>
         </table>
     );
-
 }
 
 export default ShowWord;

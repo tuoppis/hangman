@@ -4,11 +4,12 @@ import ShowWord from "./ShowWord";
 import React, {useState} from "react";
 
 let wordList = [
-    "VIISIKKO", "EPÄTOSI", "JOPAS", "JOTAKIN", "MELKEIN", "PÄÄKALLO", "ZEBRA", "RUSKEA", "VÄRITÖN", "PALLUKKA",
-    "BANAALI", "BRUTAALI", "VEIKKAUS", "RETKEILIJÄ", "XENON", "DATANOMI", "LAADUKAS", "PITKÄ", "SUOMI", "JÄRVI"
+    "VIISIKKO", "EPÄTOSI", "JOPAS", "JOTAKIN", "MELKEIN", "PÄÄKALLO", "ZEEBRA", "RUSKEA", "VÄRITÖN", "PALLUKKA",
+    "BANAALI", "BRUTAALI", "VEIKKAUS", "RETKEILIJÄ", "XENON", "DATANOMI", "LAADUKAS", "PITKÄ", "SUOMI", "JÄRVI",
+    "AUTUAS", "DIPLOMI", "ONGET", "MIKSI", "LAADUKAS", "SUTINA", "RYÖKÄLE", "NAPERO", "UIMARI", "KUPARI", "POSKI"
 ];
 
-class  Main extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,7 +17,7 @@ class  Main extends React.Component {
             guessedChars: [],
             toGuessChars: [..."TESTISANA"],
             wrongGuessCount: 0,
-            message: "valitse kirjain!"
+            message: "Valitse kirjain!"
         }
         this.characterPressed = this.characterPressed.bind(this);
         this.gameOver = this.gameOver.bind(this);
@@ -67,10 +68,6 @@ class  Main extends React.Component {
     gameOver() {
         document.getElementById("gameover").style.display = "block";
         document.getElementById("gameon").style.display = "none";
-    }
-
-    selectMessage() {
-
     }
 
     render() {

@@ -6,7 +6,6 @@ function Keyboard({MainCharacterPressed}) {
             {AllowedChars.map((ch, idx) => <button id={`key${ch}`} className="character" onClick={() => MainCharacterPressed(ch)}>{ch}</button>)}
         </div>
     );
-
 }
 
 export default Keyboard;
