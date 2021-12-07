@@ -78,6 +78,7 @@ class Main extends React.Component {
             this.wordList = obj.words;
             this.guesses = obj.guesses;
             this.difficulty = obj.difficulty;
+            this.state.wrongGuessCount = 9 - this.guesses;
             obj = false;
         }
 
