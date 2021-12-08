@@ -16,7 +16,7 @@ function GameHeader({ gameState, message, guessesLeft, newGame }) {
             <div id="gameover" style={{ display: gameState === 2 ? "block" : "none" }}>
                 <p>{message}</p>
                 <button onClick={() => newGame(true)}>Change Difficulty</button>
-                <button onClick={() => newGame(false)}>New Word!</button>
+                <button onClick={() => newGame(false)}>Keep Playing!</button>
             </div>
             <GameSelect visible={gameState === 0} callback={newGame} />
         </div>

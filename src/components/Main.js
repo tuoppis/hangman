@@ -21,7 +21,7 @@ class Main extends React.Component {
         this.state = this.getInitialState();
         this.guesses = 9;
         this.difficulty = "Easy";
-        this.wordList = [];
+        this.wordList = [""];
 
         this.characterPressed = this.characterPressed.bind(this);
         this.gameOver = this.gameOver.bind(this);
@@ -66,7 +66,9 @@ class Main extends React.Component {
         let state = {...this.state};
         let word = getRandomFrom(this.wordList).toUpperCase();
         state.toGuessChars = [...word];
+        state.guessedChars = [];
         state.charsRemain = word.length;
+        state.wrongGuessCount = 9 - this.guesses;
 
         this.setState(state);
     }
@@ -78,10 +80,10 @@ class Main extends React.Component {
             this.wordList = obj.words;
             this.guesses = obj.guesses;
             this.difficulty = obj.difficulty;
-            this.state.wrongGuessCount = 9 - this.guesses;
             obj = false;
         }
-
+        
+        //this.state.wrongGuessCount = 9 - this.guesses;
         this.state.gameState = obj ? 0 : 1;
 
         this.initWord();
