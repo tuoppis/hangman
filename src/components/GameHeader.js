@@ -8,7 +8,7 @@ function GameHeader({ gameState, message, guessesLeft, newGame }) {
     //  2: game over
     return (
         <div class="game-header">
-            <h3>Hangman</h3>
+            
             <div id="game-info" style={ {display: gameState===1 ? "block" : "none"} }>
                 <p>You have {guessesLeft} guess{guessesLeft !== 1 ? "es" : ""} left!</p>
                 <p>{message}</p>

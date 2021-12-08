@@ -42,11 +42,10 @@ class Main extends React.Component {
     }
     
     characterPressed(e) {
+        document.getElementById("key"+e).disabled = true;
         let guessed = this.checkGuess(e, this.state.toGuessChars);
-        let btn = document.getElementById("key"+e);
         let state = {...this.state};
-        state.guessedChars = [...this.state.guessedChars, e];
-        btn.disabled = true;
+        state.guessedChars.push(e); // = [...this.state.guessedChars, e];
         if (guessed > 0) {
             state.charsRemain -= guessed;
             state.message = state.charsRemain > 0 ? "Correct!" : "You won";
@@ -54,13 +53,13 @@ class Main extends React.Component {
             state.wrongGuessCount++;
             state.message = state.wrongGuessCount < 9 ? "Wrong!" : "You lost!";
         }
-        this.setState(state);
 
-        if (state.wrongGuessCount >= 9 || state.charsRemain <= 0) this.gameOver();
+        if ((state.wrongGuessCount >= 9) || (state.charsRemain <= 0)) this.gameOver(state);
+        else this.setState(state);
     }
 
     /**
-     * Picks a new word from wordlist
+     * Picks a new word from wordlist resets 
      * */
     initWord() {
         let state = {...this.state};
@@ -71,6 +70,13 @@ class Main extends React.Component {
         state.wrongGuessCount = 9 - this.guesses;
 
         this.setState(state);
+
+        //enable all keys
+        let keyboard = document.getElementById("keyboard").childNodes;
+
+        for (let btn of keyboard) {
+            btn.disabled = false;
+        }
     }
 
     newGame(obj) {
@@ -91,9 +97,7 @@ class Main extends React.Component {
 
     checkGuess(ch, array) {
         let sum = 0;
-        for (let idx in array) {
-            if (array[idx] === ch) sum++;
-        }
+        for (let letter of array) if (letter === ch) sum++;
         return sum;
     }
 
@@ -101,17 +105,20 @@ class Main extends React.Component {
         //this.init();
     }
 
-    gameOver() {
-        let state = { ...this.state, gameState: 2 };
+    gameOver(state) {
+        state.gameState = 2;
         this.setState(state);
     }
 
     render() {
         return (
             <>
-                <GameHeader gameState={this.state.gameState} message={this.state.message} guessesLeft={this.guesses - this.state.wrongGuessCount} newGame={this.newGame} />
+                <h3>Hangman {this.difficulty}</h3>
+                <GameHeader gameState={this.state.gameState} message={this.state.message} 
+                    guessesLeft={9 - this.state.wrongGuessCount} newGame={this.newGame} />
                 <ShowDrawing drawingIndex={this.state.wrongGuessCount + 1} />
-                <ShowWord toGuessChars={this.state.toGuessChars} guessedChars={this.state.guessedChars} />
+                <ShowWord toGuessChars={this.state.toGuessChars} guessedChars={this.state.guessedChars} 
+                    visible={this.state.gameState !== 0} reveal={this.state.gameState===2}/>
                 <Keyboard MainCharacterPressed={this.characterPressed} visible={this.state.gameState === 1} />
             </>
         );
