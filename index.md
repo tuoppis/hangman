@@ -2,7 +2,7 @@
 <p style="text-align: right"><em>—Lucius Annaeus Seneca</em></p>
 
 ## Description
-The hangman game implmented in react. Features large dictionary and a difficulty setting.
+The hangman game implemented in react. Features large dictionary and a difficulty setting.
 
 ### Images
 
