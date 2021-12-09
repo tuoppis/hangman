@@ -59,7 +59,7 @@ class Main extends React.Component {
     }
 
     /**
-     * Picks a new word from wordlist resets 
+     * Picks a new word from wordlist and resets the state 
      * */
     initWord() {
         let state = {...this.state};
@@ -88,10 +88,8 @@ class Main extends React.Component {
             this.difficulty = obj.difficulty;
             obj = false;
         }
-        
-        //this.state.wrongGuessCount = 9 - this.guesses;
-        this.state.gameState = obj ? 0 : 1;
 
+        this.state.gameState = obj ? 0 : 1;
         this.initWord();
     }
 
